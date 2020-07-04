@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>Reservar Habitación</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Reservar Habitación</h1>
+    <form name="datos" class="needs-validation" action="disponibilidad.html" novalidate>
+      <fieldset>
+        <legend>Datos de Cliente</legend>
+        <div class="form-group row">
+          <label class="col-md-2" for="identificacion">Identificación</label>
+          <input class="col-md-10 form-control" id="identificacion" name="identificacion" type="text" required pattern="\s*\d+\s*">
+          <div class="invalid-feedback col-sm-12">
+            Ingrese únicamente números
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Datos de Reserva</legend>
+        <div class="form-group row">
+          <label class="col-md-2" for="tipo">Tipo de Habitación</label>
+          <select class="col-md-10 custom-select" id="tipo" name="tipo" required>
+            <option></option>
+            <option value="sencilla">Sencilla</option>
+            <option value="doble">Doble</option>
+            <option value="familiar">Familiar</option>
+          </select>
+          <div class="invalid-feedback col-sm-12">
+            Seleccione una opción
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2" for="desde">Desde</label>
+          <select class="col-md-10 custom-select" id="desde" name="desde" required>
+            <option></option>
+            <option value="fecha1">03 de Julio - 2020</option>
+            <option value="fecha2">04 de Julio - 2020</option>
+            <option value="fecha3">05 de Julio - 2020</option>
+          </select>
+          <div class="invalid-feedback col-sm-12">
+            Seleccione una fecha
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2" for="hasta">Hasta</label>
+          <select class="col-md-10 custom-select" id="hasta" name="hasta" required>
+            <option></option>
+            <option value="fecha1">03 de Julio - 2020</option>
+            <option value="fecha2">04 de Julio - 2020</option>
+            <option value="fecha3">05 de Julio - 2020</option>
+          </select>
+          <div class="invalid-feedback col-sm-12">
+            Seleccione una fecha
+          </div>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Verificar Disponibilidad</button>
+    </form>
+    <script>
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+  </div>
+</body>
+</html>

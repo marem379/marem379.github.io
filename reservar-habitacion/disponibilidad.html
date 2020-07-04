@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>Disponibilidad</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Disponibilidad</h1>
+    <form class="needs-validation" name="datos" action="confirmacion-reserva.html" novalidate>
+      <div class="form-group row">
+        <div class="alert alert-success col-sm-12">
+          Hay habitaciones disponibles
+        </div>
+      </div>
+      <fieldset>
+        <legend>Datos de Cliente</legend>
+        <div class="form-group row">
+          <label class="col-md-2" for="identificacion">Identificación</label>
+          <input readonly class="col-md-10 form-control" id="identificacion" name="identificacion" type="text">
+        </div>
+      </fieldset>
+      <fieldset disabled>
+        <legend>Datos de Reserva</legend>
+        <div class="form-group row">
+          <label class="col-md-2" for="tipo">Tipo de Habitación</label>
+          <select readonly class="col-md-10 custom-select" id="tipo" name="tipo" required>
+            <option></option>
+            <option value="sencilla">Sencilla</option>
+            <option value="doble">Doble</option>
+            <option value="familiar">Familiar</option>
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2" for="desde">Desde</label>
+          <select class="col-md-10 custom-select" id="desde" name="desde" required>
+            <option></option>
+            <option value="fecha1">03 de Julio - 2020</option>
+            <option value="fecha2">04 de Julio - 2020</option>
+            <option value="fecha3">05 de Julio - 2020</option>
+          </select>
+          <div class="invalid-feedback col-sm-12">
+            Seleccione una fecha
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2" for="hasta">Hasta</label>
+          <select class="col-md-10 custom-select" id="hasta" name="hasta" required>
+            <option></option>
+            <option value="fecha1">03 de Julio - 2020</option>
+            <option value="fecha2">04 de Julio - 2020</option>
+            <option value="fecha3">05 de Julio - 2020</option>
+          </select>
+          <div class="invalid-feedback col-sm-12">
+            Seleccione una fecha
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Habitaciones</legend>
+        <div class="form-group row">
+          <label for="habitacion" class="col-md-2">Habitación</label>
+          <select required name="habitacion" id="habitacion" class="col-md-10 custom-select">
+            <option value=""></option>
+            <option value="101">104</option>
+            <option value="101">301</option>
+            <option value="101">402</option>
+            <option value="101">405</option>
+          </select>
+          <div class="invalid-feedback col-sm-12">
+            Seleccione una habitación
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="valor" class="col-md-2">Valor Reserva</label>
+          <input readonly value="$50.000" type="text" name="valor" id="valor" class="col-md-10 form-control">
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Reservar</button>
+    </form>
+  </div>
+  <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var params = new URLSearchParams(window.location.search);
+        for (const key of params.keys()) {
+          document.forms.datos.elements[key].value = params.get(key);
+        }
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+</body>
+</html>
